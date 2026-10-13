@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0B0E14" />
+    <title>Habitlee: Habit Tracker</title>
+    <script>
+      // Applies the saved theme before first paint. Without this the app
+      // renders one light frame before React mounts, which reads as a flash
+      // on every cold start in dark mode.
+      (function () {
+        try {
+          var stored = localStorage.getItem('habitlee:theme');
+          var dark = stored === 'dark' || (stored !== 'light'
+            && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (dark) document.documentElement.classList.add('dark');
+          document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', dark ? '#0B0E14' : '#FAF7F2');
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-paper dark:bg-ink">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

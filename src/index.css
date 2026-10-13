@@ -1,0 +1,49 @@
+@import '@fontsource-variable/fraunces/standard.css';
+@import '@fontsource/plus-jakarta-sans/400.css';
+@import '@fontsource/plus-jakarta-sans/500.css';
+@import '@fontsource/plus-jakarta-sans/600.css';
+@import '@fontsource/plus-jakarta-sans/700.css';
+@import '@fontsource/plus-jakarta-sans/800.css';
+@import '@fontsource/jetbrains-mono/500.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Android WebViews older than 140 report zero for env(safe-area-inset-*).
+   Capacitor 8 injects --safe-area-inset-* with the real values, so prefer
+   those and fall back to env() on the web / iOS. */
+:root {
+  --safe-top: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
+  --safe-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
+  --safe-left: var(--safe-area-inset-left, env(safe-area-inset-left, 0px));
+  --safe-right: var(--safe-area-inset-right, env(safe-area-inset-right, 0px));
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply font-sans antialiased text-ink dark:text-paper bg-paper dark:bg-ink;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: contain;
+  padding-left: var(--safe-left);
+  padding-right: var(--safe-right);
+}
+
+::selection {
+  @apply bg-ember/30;
+}
+
+/* Hide scrollbars on the mobile shell while keeping scroll functional */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

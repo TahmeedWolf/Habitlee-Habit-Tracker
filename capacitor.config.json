@@ -1,0 +1,20 @@
+{
+  "appId": "com.habitlee.habittracker",
+  "appName": "Habitlee: Habit Tracker",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "backgroundColor": "#0B0E14"
+  },
+  "plugins": {
+    "SystemBars": {
+      "insetsHandling": "css"
+    },
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_habitlee",
+      "iconColor": "#FB923C"
+    }
+  }
+}

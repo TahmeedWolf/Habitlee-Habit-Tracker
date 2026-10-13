@@ -1,0 +1,28 @@
+# deps
+node_modules/
+
+# build output
+dist/
+dist-ssr/
+*.local
+
+# SIGNING — never commit
+android/keystore.properties
+*.jks
+*.keystore
+android/local.properties
+
+# Android native project IS committed — Capacitor doesn't regenerate it.
+# Only generated/secret bits ignored:
+android/.gradle/
+android/build/
+android/app/build/
+android/app/release/
+android/captures/
+.gradle/
+
+# Capacitor copies dist here on sync — regenerable
+android/app/src/main/assets/public/
+
+# packaged apps
+*.ap

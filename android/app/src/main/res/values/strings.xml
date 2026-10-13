@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Habitlee: Habit Tracker</string>
+    <string name="title_activity_main">Habitlee: Habit Tracker</string>
+    <string name="package_name">com.habitlee.habittracker</string>
+    <string name="custom_url_scheme">com.habitlee.habittracker</string>
+</resources>

@@ -1,0 +1,45 @@
+{
+  "name": "habitlee-habit-tracker",
+  "private": true,
+  "version": "1.0.2",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test tests/*.test.js",
+    "cap:add": "npx cap add android",
+    "version:check": "node scripts/check-version.js",
+    "cap:sync": "node scripts/check-version.js && vite build && npx cap sync android",
+    "cap:open": "npx cap open android",
+    "apk:share": "npm run cap:sync && node scripts/share-apk.js",
+    "apk:share:fast": "node scripts/share-apk.js"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.0",
+    "@capacitor/core": "^8.5.0",
+    "@capacitor/local-notifications": "^8.3.1",
+    "@fontsource-variable/fraunces": "^5.1.0",
+    "@fontsource/jetbrains-mono": "^5.1.0",
+    "@fontsource/plus-jakarta-sans": "^5.1.0",
+    "framer-motion": "^11.5.4",
+    "lucide-react": "^0.441.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.5.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.45",
+    "qrcode-terminal": "^0.12.0",
+    "tailwindcss": "^3.4.10",
+    "vite": "^5.4.6"
+  },
+  "description": "Offline-first micro habit tracker. React + Tailwind + Framer Motion, shipped to Android with Capacitor.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  }
+}
