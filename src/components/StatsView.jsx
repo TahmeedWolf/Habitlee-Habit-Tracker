@@ -38,7 +38,7 @@ export default function StatsView({ habits, onAdd, today = todayStr() }) {
               <p className="text-[10px] uppercase tracking-widest text-dusk dark:text-white/35 mb-2">
                 Last 28 days
               </p>
-              <SparkTrail habit={h} colorMeta={color} days={28} size="lg" today={today} />
+              <SparkTrail habit={h} colorMeta={color} days={28} size="lg" today={today} grid />
             </div>
           );
         })}

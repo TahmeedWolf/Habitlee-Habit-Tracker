@@ -40,6 +40,17 @@ body {
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+/* Delete dialog card entrance (1.0.3). Pure CSS with fill-mode "both", so the
+   final state is held by the animation itself and there is no hand-over
+   frame at the end. See ConfirmDialog.jsx. */
+@keyframes habitlee-pop-in {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+.habitlee-pop-in {
+  animation: habitlee-pop-in 160ms ease-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

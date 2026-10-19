@@ -186,18 +186,18 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      <AnimatePresence>
-        {pendingDeleteId && (
-          <ConfirmDialog
-            title={pendingHabit ? `Delete "${pendingHabit.name}"?` : 'Delete this habit?'}
-            message="Its full history will be removed. This can't be undone."
-            confirmLabel="Delete"
-            danger
-            onCancel={() => setPendingDeleteId(null)}
-            onConfirm={confirmDelete}
-          />
-        )}
-      </AnimatePresence>
+      {/* 1.0.3: no AnimatePresence here. The dialog has no exit animation
+          (see ConfirmDialog for why), so it simply unmounts on close. */}
+      {pendingDeleteId && (
+        <ConfirmDialog
+          title={pendingHabit ? `Delete "${pendingHabit.name}"?` : 'Delete this habit?'}
+          message="Its full history will be removed. This can't be undone."
+          confirmLabel="Delete"
+          danger
+          onCancel={() => setPendingDeleteId(null)}
+          onConfirm={confirmDelete}
+        />
+      )}
     </div>
   );
 }

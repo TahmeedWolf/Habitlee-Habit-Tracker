@@ -1,26 +1,32 @@
-import { motion } from 'framer-motion';
 import { useBackDismiss } from '../hooks/useBackDismiss';
 
+// 1.0.3: plain elements + one CSS animation, no Framer Motion.
+//
+// On Android the Framer Motion version of this dialog flickered twice: the
+// screen behind flashed un-dimmed for a frame as it opened, and the dialog
+// flashed back for a frame after it closed. Both are "end of animation"
+// frames, where the animation hands over to the final style.
+//
+// So, nothing hands over any more:
+// - the dim + blur backdrop appears instantly (no opacity animation on an
+//   element that carries a backdrop-filter);
+// - only the card animates in, using a CSS keyframe with fill-mode "both",
+//   so its final state is held by the animation itself;
+// - closing removes it immediately (no exit animation to finish).
 export default function ConfirmDialog({ title, message, confirmLabel = 'Confirm', danger, onConfirm, onCancel }) {
   useBackDismiss(true, onCancel);
 
   return (
-    <motion.div
+    <div
       className="fixed inset-0 bg-ink/60 backdrop-blur-sm z-50 flex items-center justify-center px-6"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
       onClick={onCancel}
       role="alertdialog"
       aria-modal="true"
       aria-label={title}
     >
-      <motion.div
+      <div
         onClick={(e) => e.stopPropagation()}
-        initial={{ scale: 0.92, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.92, opacity: 0 }}
-        className="w-full max-w-xs bg-paper dark:bg-ink-card rounded-3xl p-5"
+        className="habitlee-pop-in w-full max-w-xs bg-paper dark:bg-ink-card rounded-3xl p-5"
       >
         <p className="font-display text-lg font-semibold mb-1.5">{title}</p>
         <p className="text-sm text-dusk dark:text-white/60 mb-5">{message}</p>
@@ -42,7 +48,7 @@ export default function ConfirmDialog({ title, message, confirmLabel = 'Confirm'
             {confirmLabel}
           </button>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
