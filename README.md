@@ -10,6 +10,14 @@
 </p>
 
 <p align="center">
+  <a href="https://play.google.com/store/apps/details?id=com.habitlee.habittracker">
+    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" height="80" />
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Google%20Play-live-01875f?style=flat-square&logo=googleplay&logoColor=white" alt="Live on Google Play" />
+  <img src="https://img.shields.io/badge/version-1.0.3-orange?style=flat-square" alt="Version 1.0.3" />
   <img src="https://img.shields.io/badge/platform-Android%2016%20(API%2036)-3DDC84?style=flat-square&logo=android&logoColor=white" alt="Android" />
   <img src="https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React 18" />
   <img src="https://img.shields.io/badge/Vite-7-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite" />
@@ -57,6 +65,7 @@ Every byte of data lives in `localStorage` on the device. There is no backend to
 | **Backfill** | Tap a past day in the trail to record a habit you forgot to tick |
 | **Streaks & stats** | Current streak, longest streak, completion rate — computed, not estimated |
 | **SparkTrail** | A per-habit week strip where the fill encodes history: done, due, missed, or not-yet-created |
+| **Weekly calendar** | Stats shows each habit's last 28 days as a 7-column week grid, today in the bottom-right |
 | **Daily reminder** | One opt-in local notification, inexact by design (no `SCHEDULE_EXACT_ALARM`) |
 | **Celebration** | Confetti and milestone toasts at 3 / 7 / 14 / 30 / 60 / 100 / 200 / 365 days |
 | **Undo** | Deleting a habit shows an undo toast that restores it at its original index |
@@ -75,6 +84,7 @@ A few decisions worth calling out:
 - **Error boundaries.** App-level and per-view, so one bad render surfaces a recoverable message rather than a blank screen.
 - **No exact alarms.** The reminder deliberately uses inexact scheduling. It can arrive a few seconds late; in exchange the app avoids a Play Store permission category that invites review friction for a habit tracker.
 - **Static Capacitor imports.** Dynamic imports stall under Capacitor's `https://localhost` origin because Vite's modulepreload hints are served without CORS headers. All native imports are static and `build.modulePreload` is off.
+- **Flicker-free delete dialog.** On Android's WebView the Framer Motion version of the confirm dialog flashed on open and close. It is now plain markup with one CSS keyframe (`fill-mode: both`) and no exit animation, which removed the flash on device.
 
 ---
 
@@ -148,7 +158,11 @@ Full policy: **[tahmeedwolf.github.io/habitlee-app-privacy](https://tahmeedwolf.
 
 ## Status
 
-Currently in **closed testing** on Google Play ahead of production release. Package: `com.habitlee.habittracker`.
+**Live on Google Play** — current version **1.0.3**. Package: `com.habitlee.habittracker`.
+
+**[Get Habitlee on Google Play](https://play.google.com/store/apps/details?id=com.habitlee.habittracker)**
+
+Before production, the app passed Google Play's 14-day closed test with three releases (1.0.1 → 1.0.3).
 
 ---
 
